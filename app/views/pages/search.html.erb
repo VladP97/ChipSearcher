@@ -1,0 +1,23 @@
+<div class="main" page="1" globalpage="1">
+  <input type="text" class="form-control search-field">
+  <button type="button" class="btn btn-secondary">Search</button>
+</div>
+<%= javascript_tag do %>
+    $(window).scroll(function() {
+      if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        $('.main').attr('page', $('body:last-child').attr('data-global-page'));
+        $('.main').attr('page', Number($('.main').attr('page')) + 1);
+        $.ajax({
+          method: "get",
+          url: '/pages/more_results',
+          data: {
+            searchText: $('.search-field').val(),
+            lastID: $('div').last().attr('last_id')
+          },
+          success: function(response) {
+            $('body').append(response);
+          }
+        });
+      }
+    });
+<% end %>

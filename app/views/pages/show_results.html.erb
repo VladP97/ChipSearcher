@@ -1,0 +1,13 @@
+<%= javascript_tag do %>
+    $(window).scroll(function() {
+    if($(window).scrollTop() + $(window).height() == $(document).height()) {
+      $.ajax({
+        method: "get",
+        url: '/pages/more_results',
+        success: function(response) {
+            $('body').append(response);
+        }
+      });
+    }
+    });
+<% end %>

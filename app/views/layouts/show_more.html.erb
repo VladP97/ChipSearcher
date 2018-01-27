@@ -1,0 +1,7 @@
+<%- @belchip_more_results_imgs.each_with_index do |img, index| %>
+    <div>
+      <%= tag('img', :src => img) %>
+      <p><%= @belchip_more_results_counts[index] %></p>
+      <p><%= @belchip_more_results_prices[index] %> руб </p>
+    </div>
+<% end %>
